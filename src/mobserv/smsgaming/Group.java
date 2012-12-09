@@ -54,4 +54,29 @@ public class Group {
 		this.players.remove(player);
 	}
 	
+	void addChallenge(Challenge challenge) {
+		//TO COMPLETE!!
+		this.challenges.add(challenge);
+	}
+	
+	void removeChallenge(Challenge challenge) {
+		this.challenges.remove(challenge);
+	}
+	
+	public String toString(){
+		String ret = "-----------------\n";
+		
+		ret += this.name+"\n";
+
+		for (Player player : players) {
+			ret += "\tplayer: "+player.getName()+" - "+player.getScore(this.name)+"pts\n";
+		}
+		ret += "-------\n";
+		for (Challenge challenge : challenges) {
+			ret += "\tchallenge: "+challenge.getObjective()+" ("+challenge.isCompleted()+") - "+challenge.getValue()+"pts\n";
+		}
+		ret += "-----------------\n";
+		return ret;
+	}
+	
 }

@@ -1,19 +1,40 @@
 package mobserv.smsgaming;
 
+
+import android.content.Context;
+
 public class Challenge {
 
 	String objective;
 	int value;
+	String groupname;
+	boolean completed;
+	String separator = "_;_";
+	Context context;
 	
-	Challenge() {
+	Challenge(Context context) {
 		objective = "";
 		value = 0;
+		groupname = "";
+		completed = false;
+		this.context = context;
 	}
 	
-	Challenge(String objective, int value) {
+	Challenge(Context context, String objective, int value, String groupname) {
 		this.objective = objective;
 		this.value = value;
+		this.groupname = groupname;
+		this.completed = false;
+		this.context = context;
 	}
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+
 	public String getObjective() {
 		return objective;
 	}
@@ -28,5 +49,19 @@ public class Challenge {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	
+	public boolean isCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+	
+	public String toString(){
+		String ret = objective+" ("+isCompleted()+") - "+value+"pts ("+groupname+")\n";
+		return ret;
+	}
+
 	
 }

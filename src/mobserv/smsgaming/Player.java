@@ -1,26 +1,35 @@
 package mobserv.smsgaming;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class Player {
 
+	Context context;
 	String name;
 	String phone_number;
 	boolean isUser;
-	int score;
+	HashMap<String,Integer> scores = new HashMap<String, Integer>();
+	String separator = "_;_";
+
 	
-	Player() {
+	Player(Context context) {
+		this.context = context;
 		name = "";
 		phone_number = "";
 		isUser = false;
-		score = 0;
 	}
 	
-	Player(String name, String phone_number, boolean isUser, int score) {
+	Player(Context context,String name, String phone_number, boolean isUser) {
+		this.context = context;
 		this.name = name;
 		this.phone_number = phone_number;
 		this.isUser = isUser;
-		this.score = score;
 	}
 
 	public String getName() {
@@ -35,8 +44,11 @@ public class Player {
 		return isUser;
 	}
 
-	public int getScore() {
-		return score;
+	public int getScore(String group_name){
+		return this.scores.get(group_name);
+	}
+	public void setScore(String group_name, Integer score) {
+		this.scores.put(group_name, score);
 	}
 
 	public void setName(String name) {
@@ -50,8 +62,44 @@ public class Player {
 	public void setUser(boolean isUser) {
 		this.isUser = isUser;
 	}
-
-	public void setScore(int score) {
-		this.score = score;
+	
+	public void challengeCompleted(Group group, Challenge challenge){
+	
+		Set<String> voidset = new HashSet<String>();
+		voidset.add("null");
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = preferences.edit();
+		Set<String> set_p_prov = preferences.getStringSet(challenge.getGroupname()+separator+"P", voidset);
+		if (set_p_prov!=voidset) {
+			set_p_prov.remove(name+separator+phone_number+separator+isUser+separator+getScore(challenge.getGroupname()));
+			set_p_prov.add(name+separator+phone_number+separator+isUser+separator+(getScore(challenge.getGroupname())+challenge.getValue()));
+			editor.putStringSet(challenge.getGroupname()+separator+"P", set_p_prov);			
+			editor.commit();
+		}
+		Set<String> set_c_prov = preferences.getStringSet(challenge.getGroupname()+separator+"C", voidset);
+		if (set_c_prov!=voidset) {
+			//System.out.println(set_c_prov.size());
+			set_c_prov.remove(challenge.getObjective()+separator+challenge.getValue()+separator+"false");
+			//System.out.println(set_c_prov.size());
+			set_c_prov.add(challenge.getObjective()+separator+challenge.getValue()+separator+"true");
+			//System.out.println(set_c_prov.size());
+			editor.putStringSet(challenge.getGroupname()+separator+"C", set_c_prov);
+			editor.commit();
+		}
+		challenge.setCompleted(true);
+		setScore(challenge.getGroupname(),scores.get(challenge.getGroupname())+challenge.getValue());
 	}
+	
+	public void newGroup(Group group) {
+		this.setScore(group.getName(),0);
+	}
+	
+	public String toString() {
+		String ret = name+" - "+phone_number+" - "+isUser()+"\n";
+		for (String group_name : scores.keySet()) {
+			ret += "\t "+group_name+" : "+getScore(group_name)+"pts\n";
+		}
+		return ret;
+	}
+	
 }
