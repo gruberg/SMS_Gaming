@@ -9,7 +9,7 @@ import android.util.Log;
 
 /**
  * SMSReceiver will be instantiated every time a new SMS is
- * received, and it will be forwarded to an instance of SMSParser;
+ * received, which will be forwarded to an instance of SMSParser;
  * 
  */
 public class SMSReceiver extends BroadcastReceiver {
@@ -38,7 +38,12 @@ public class SMSReceiver extends BroadcastReceiver {
         }	
         //---display the new SMS message---
         Log.i("SMSReceiver", str);
-        parser.parse(str);
+        try{
+        	parser.parse(str);
+        }
+        catch (java.lang.NullPointerException e){
+        	Log.e("SMSReceiver", "I don't know where the parser is !");
+        }
 	}
 	
 	/**

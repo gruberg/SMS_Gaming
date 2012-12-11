@@ -24,8 +24,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		
+		//tests de lolo
+		SMSParser parser = new SMSParser();
+		//fin des tests de lolo
 
+		//tests de guillaume
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.clear();
@@ -62,6 +65,8 @@ public class MainActivity extends Activity {
 		this.readData();
 
 		this.printData();
+		
+		//fin tests Guillaume
 
 	}
 
