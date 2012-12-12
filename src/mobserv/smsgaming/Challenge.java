@@ -1,7 +1,12 @@
 package mobserv.smsgaming;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 /**
  * Challenge instance allows to represent any challenge
@@ -26,11 +31,11 @@ public class Challenge {
 		this.context = context;
 	}
 	
-	Challenge(Context context, String objective, int value, String groupname) {
+	Challenge(Context context, String objective, int value, String groupname, boolean completed) {
 		this.objective = objective;
 		this.value = value;
 		this.groupname = groupname;
-		this.completed = false;
+		this.completed = completed;
 		this.context = context;
 	}
 	public String getGroupname() {
@@ -60,8 +65,22 @@ public class Challenge {
 		return completed;
 	}
 
-	public void setCompleted(boolean completed) {
-		this.completed = completed;
+	public void setCompleted() {
+		this.completed = true;
+		Set<String> voidset = new HashSet<String>();
+		voidset.add("null");
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = preferences.edit();
+		Set<String> set_c_prov = preferences.getStringSet(this.getGroupname()+separator+"C", voidset);
+		if (set_c_prov!=voidset) {
+			//System.out.println(set_c_prov.size());
+			set_c_prov.remove(this.getObjective()+separator+this.getValue()+separator+"false");
+			//System.out.println(set_c_prov.size());
+			set_c_prov.add(this.getObjective()+separator+this.getValue()+separator+"true");
+			//System.out.println(set_c_prov.size());
+			editor.putStringSet(this.getGroupname()+separator+"C", set_c_prov);
+			editor.commit();
+		}
 	}
 	
 	public String toString(){

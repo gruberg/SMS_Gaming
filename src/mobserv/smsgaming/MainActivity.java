@@ -29,36 +29,43 @@ public class MainActivity extends Activity {
 		//fin des tests de lolo
 
 		//tests de césar
+		Set<String> voidset = new HashSet<String>();
+		voidset.add("null");
+		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.clear();
+		if (preferences.getStringSet("group1"+separator+"C",voidset)==voidset) {
+			Set<String> test = new HashSet<String>();
+			test.add("group1");
+			test.add("group2");
+			editor.putStringSet("groups", test);
+
+			Set<String> group1P = new HashSet<String>();
+			group1P.add("player1"+separator+"0672838272"+separator+"false"+separator+"3");
+			group1P.add("player2"+separator+"0630000000"+separator+"true"+separator+"4");
+			editor.putStringSet("group1"+separator+"P", group1P);
+
+			Set<String> group1C = new HashSet<String>();
+			group1C.add("dothis1"+separator+"30"+separator+false);
+			group1C.add("dothis2"+separator+"50"+separator+false);
+			editor.putStringSet("group1"+separator+"C", group1C);
+
+			Set<String> group2P = new HashSet<String>();
+			group2P.add("player1"+separator+"0672838272"+separator+"false"+separator+"12");
+			group2P.add("player4"+separator+"0632340000"+separator+"false"+separator+"9");
+			editor.putStringSet("group2"+separator+"P", group2P);
+
+			editor.commit();
+
+			players.get(0).challengeCompleted(getGroup("group1"),challenges.get(0));
+		}
 		
-		Set<String> test = new HashSet<String>();
-		test.add("group1");
-		test.add("group2");
-		editor.putStringSet("groups", test);
-
-		Set<String> group1P = new HashSet<String>();
-		group1P.add("player1"+separator+"0672838272"+separator+"false"+separator+"3");
-		group1P.add("player2"+separator+"0630000000"+separator+"true"+separator+"4");
-		editor.putStringSet("group1"+separator+"P", group1P);
-
-		Set<String> group1C = new HashSet<String>();
-		group1C.add("dothis1"+separator+"30"+separator+false);
-		group1C.add("dothis2"+separator+"50"+separator+false);
-		editor.putStringSet("group1"+separator+"C", group1C);
-
-		Set<String> group2P = new HashSet<String>();
-		group2P.add("player1"+separator+"0672838272"+separator+"false"+separator+"12");
-		group2P.add("player4"+separator+"0632340000"+separator+"false"+separator+"9");
-		editor.putStringSet("group2"+separator+"P", group2P);
-
-		editor.commit();
-		this.readData();
+		this.readData();	
 		this.printData();
-				
-		players.get(0).challengeCompleted(getGroup("group1"),challenges.get(0));
-		this.readData();
+		getUser().challengeCompleted(getGroup("group1"),challenges.get(0));
+
+		this.readData();	
 		this.printData();
 		//fin tests césar
 
@@ -131,10 +138,9 @@ public class MainActivity extends Activity {
 							String c_name_prov = set_c_prov.toArray()[j].toString().split(separator)[0];
 							String c_points_prov = set_c_prov.toArray()[j].toString().split(separator)[1];
 							boolean c_completed_prov = Boolean.parseBoolean(set_c_prov.toArray()[j].toString().split(separator)[2]);
-							if (getPlayer(c_name_prov,g_name_prov)==null) {
+							if (getChallenge(c_name_prov,g_name_prov)==null) {
 								//Toast.makeText(getBaseContext(),"new c:"+c_name_prov+" value:"+c_points_prov+" done?:"+c_completed_prov,Toast.LENGTH_SHORT).show();
-								Challenge c_prov = new Challenge(this, c_name_prov,Integer.parseInt(c_points_prov), g_name_prov);
-								c_prov.setCompleted(c_completed_prov);
+								Challenge c_prov = new Challenge(this, c_name_prov,Integer.parseInt(c_points_prov), g_name_prov,c_completed_prov);
 								this.challenges.add(c_prov);
 								group_prov.addChallenge(c_prov);
 							}
@@ -189,6 +195,13 @@ public class MainActivity extends Activity {
 		return challenges;
 	}
 	
+	public Player getUser(){
+		Player ret = null;
+		for (Player player : players) {
+			if (player.isUser()) ret = player;
+		}
+		return ret;
+	}
 	public void printData() {
 		System.out.println("nb groups:"+groups.size());
 		for(Group group : groups) {
