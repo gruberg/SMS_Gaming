@@ -8,6 +8,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+/**
+ * Player instance allows to represent any player
+ * of the game (user or not), and access to
+ * any data associated to it.
+ */
 public class Player {
 
 	Context context;
@@ -63,6 +68,12 @@ public class Player {
 		this.isUser = isUser;
 	}
 	
+	/**
+	 * Use this method so that game data reflects
+	 * the completion of a challenge by the user.
+	 * @param group : instance of group corresponding to the completed challenge.
+	 * @param challenge : instance of challenge completed by the player.
+	 */
 	public void challengeCompleted(Group group, Challenge challenge){
 	
 		Set<String> voidset = new HashSet<String>();
@@ -89,7 +100,7 @@ public class Player {
 		challenge.setCompleted(true);
 		setScore(challenge.getGroupname(),scores.get(challenge.getGroupname())+challenge.getValue());
 	}
-	
+
 	public void newGroup(Group group) {
 		this.setScore(group.getName(),0);
 	}

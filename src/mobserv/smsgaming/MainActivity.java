@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 		SMSParser parser = new SMSParser();
 		//fin des tests de lolo
 
-		//tests de guillaume
+		//tests de césar
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.clear();
@@ -54,19 +54,13 @@ public class MainActivity extends Activity {
 		editor.putStringSet("group2"+separator+"P", group2P);
 
 		editor.commit();
-
-		 
 		this.readData();
-		
 		this.printData();
 				
 		players.get(0).challengeCompleted(getGroup("group1"),challenges.get(0));
-
 		this.readData();
-
 		this.printData();
-		
-		//fin tests Guillaume
+		//fin tests césar
 
 	}
 
@@ -77,6 +71,10 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * This method reads all the stored data of the game,
+	 * and puts it in variables.
+	 */
 	public void readData() {
 		int i,j;
 		

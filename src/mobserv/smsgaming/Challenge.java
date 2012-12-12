@@ -3,6 +3,12 @@ package mobserv.smsgaming;
 
 import android.content.Context;
 
+/**
+ * Challenge instance allows to represent any challenge
+ * of the game OF THE USER, and access to
+ * any data associated to it (which group it corresponds to,
+ * if it is completed or not, ..).
+ */
 public class Challenge {
 
 	String objective;

@@ -2,6 +2,11 @@ package mobserv.smsgaming;
 
 import java.util.ArrayList;
 
+/**
+ * Group instance allows to represent any group
+ * of the game, and access to
+ * any data associated to it (players, challenges,...)
+ */
 public class Group {
 	
 	String name;
