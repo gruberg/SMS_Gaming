@@ -5,13 +5,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
+
+	ListView lvListe;
 
 	ArrayList<Group> groups = new ArrayList<Group>();
 	ArrayList<Player> players = new ArrayList<Player>();
@@ -23,6 +31,8 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		lvListe = (ListView)findViewById(R.id.listView1);
 
 		//tests de lolo
 		SMSParser parser = new SMSParser();
@@ -68,6 +78,33 @@ public class MainActivity extends Activity {
 		this.readData();	
 		this.printData();
 		//fin tests césar
+		
+		GroupAdapter adapter = new GroupAdapter(this, groups);
+
+		lvListe.setAdapter(adapter);
+		
+		lvListe.setOnItemClickListener(new OnItemClickListener() {
+	          public void onItemClick(AdapterView<?> parent, View view,
+	              int position, long id) {
+	 
+	              // selected item
+	              TextView group_view = (TextView) ((LinearLayout) view).getChildAt(0);
+	              // Launching new Activity on selecting single List Item
+	              Intent i = new Intent(getApplicationContext(), GroupItem.class);
+	              // sending data to new activity
+	              i.putExtra("name",group_view.getText().toString());
+	              
+	              /*
+	              ArrayList<String> playersinfos = new ArrayList<String>();
+	              playersinfos.add("Bob"+separator+"14");
+	              playersinfos.add("Jenny"+separator+"63");
+	              
+	              
+	              i.putExtra("players", playersinfos);
+	              */
+	              startActivity(i);
+	          }
+	        });
 
 	}
 
