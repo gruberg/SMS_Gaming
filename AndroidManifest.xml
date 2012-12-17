@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".GroupItem"
-                    android:label="Group Item Selected">
+                    android:label="Group Informations">
         </activity>
         <receiver android:name=".SMSReceiver">
             <intent-filter>
