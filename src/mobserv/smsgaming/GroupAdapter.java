@@ -32,6 +32,7 @@ public class GroupAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
+		Group group;
 
 		if(convertView == null) {
 
@@ -42,6 +43,8 @@ public class GroupAdapter extends BaseAdapter {
 		holder.nameGroup = (TextView)convertView.findViewById(R.id.nameGroup);
 
 		holder.nbPlayers = (TextView)convertView.findViewById(R.id.nbPlayers);
+		
+		holder.nbPoints = (TextView)convertView.findViewById(R.id.nbPoints);
 
 		convertView.setTag(holder);
 
@@ -51,9 +54,20 @@ public class GroupAdapter extends BaseAdapter {
 
 		}
 
-		holder.nameGroup.setText(groups.get(position).getName());
+		group = groups.get(position);
+		
+		holder.nameGroup.setText(group.getName());
 
-		holder.nbPlayers.setText(Integer.toString(groups.get(position).getPlayers().size()));
+		holder.nbPlayers.setText("("+Integer.toString(group.getPlayers().size())
+				+" players)");
+		
+		String str_position = Integer.toString(group.getPosition(group.getUser()));
+		int int_position = group.getPosition(group.getUser());
+		if (int_position==1) str_position += "st";
+		else if (int_position==2) str_position += "nd";
+		else if (int_position==3) str_position += "rd";
+		else str_position += "th";
+		holder.nbPoints.setText(str_position+" ("+Integer.toString(group.getUser().getScore(group.getName()))+"pts)");
 
 		return convertView;
 
@@ -67,6 +81,8 @@ public class GroupAdapter extends BaseAdapter {
 		TextView nameGroup;
 
 		TextView nbPlayers;
+		
+		TextView nbPoints;
 
 		}
 }

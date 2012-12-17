@@ -68,6 +68,26 @@ public class Group {
 		this.challenges.remove(challenge);
 	}
 	
+	public Player getUser(){
+		Player ret = null;
+		for (Player player : players) {
+			if (player.isUser()) ret = player;
+		}
+		return ret;
+	}
+	
+	public int getPosition(Player player){		
+		int ret = 1;
+		
+		for (Player p: players) {
+			if ((p!=player)&&(p.getScore(getName())>player.getScore(getName()))) {
+				ret += 1;
+			}
+		}
+		return ret;
+	}
+	
+	
 	public String toString(){
 		String ret = "-----------------\n";
 		

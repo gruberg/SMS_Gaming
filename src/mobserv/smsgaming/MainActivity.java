@@ -41,70 +41,66 @@ public class MainActivity extends Activity {
 		//tests de césar
 		Set<String> voidset = new HashSet<String>();
 		voidset.add("null");
-		
+
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.clear();
-		if (preferences.getStringSet("group1"+separator+"C",voidset)==voidset) {
-			Set<String> test = new HashSet<String>();
-			test.add("group1");
-			test.add("group2");
-			editor.putStringSet("groups", test);
+		Set<String> test = new HashSet<String>();
+		test.add("group1");
+		test.add("group2");
+		editor.putStringSet("groups", test);
 
-			Set<String> group1P = new HashSet<String>();
-			group1P.add("player1"+separator+"0672838272"+separator+"false"+separator+"3");
-			group1P.add("player2"+separator+"0630000000"+separator+"true"+separator+"4");
-			editor.putStringSet("group1"+separator+"P", group1P);
+		Set<String> group1P = new HashSet<String>();
+		group1P.add("player1"+separator+"0672838272"+separator+"true"+separator+"3");
+		group1P.add("player2"+separator+"0630000000"+separator+"false"+separator+"4");
+		group1P.add("player3"+separator+"0649857984"+separator+"false"+separator+"56");
 
-			Set<String> group1C = new HashSet<String>();
-			group1C.add("dothis1"+separator+"30"+separator+false);
-			group1C.add("dothis2"+separator+"50"+separator+false);
-			editor.putStringSet("group1"+separator+"C", group1C);
+		editor.putStringSet("group1"+separator+"P", group1P);
 
-			Set<String> group2P = new HashSet<String>();
-			group2P.add("player1"+separator+"0672838272"+separator+"false"+separator+"12");
-			group2P.add("player4"+separator+"0632340000"+separator+"false"+separator+"9");
-			editor.putStringSet("group2"+separator+"P", group2P);
+		Set<String> group1C = new HashSet<String>();
+		group1C.add("dothis1"+separator+"30"+separator+false);
+		group1C.add("dothis2"+separator+"50"+separator+false);
+		editor.putStringSet("group1"+separator+"C", group1C);
 
-			editor.commit();
+		Set<String> group2P = new HashSet<String>();
+		group2P.add("player1"+separator+"0672838272"+separator+"true"+separator+"12");
+		group2P.add("player4"+separator+"0632340000"+separator+"false"+separator+"9");
+		editor.putStringSet("group2"+separator+"P", group2P);
 
-			players.get(0).challengeCompleted(getGroup("group1"),challenges.get(0));
-		}
-		
-		this.readData();	
-		this.printData();
-		getUser().challengeCompleted(getGroup("group1"),challenges.get(0));
+		editor.commit();
 
 		this.readData();	
 		this.printData();
+		//getUser().challengeCompleted(getGroup("group1"),challenges.get(0));
+
 		//fin tests césar
-		
+
 		GroupAdapter adapter = new GroupAdapter(this, groups);
 
 		lvListe.setAdapter(adapter);
-		
+
 		lvListe.setOnItemClickListener(new OnItemClickListener() {
-	          public void onItemClick(AdapterView<?> parent, View view,
-	              int position, long id) {
-	 
-	              // selected item
-	              TextView group_view = (TextView) ((LinearLayout) view).getChildAt(0);
-	              // Launching new Activity on selecting single List Item
-	              Intent i = new Intent(getApplicationContext(), GroupItem.class);
-	              // sending data to new activity
-	              i.putExtra("name",group_view.getText().toString());
-	              
-	              /*
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				// selected item
+				TextView group_view = (TextView) ((LinearLayout) view).getChildAt(0);
+				// Launching new Activity on selecting single List Item
+				Intent i = new Intent(getApplicationContext(), GroupItem.class);
+				// sending data to new activity
+				i.putExtra("name",group_view.getText().toString());
+
+				/*
 	              ArrayList<String> playersinfos = new ArrayList<String>();
 	              playersinfos.add("Bob"+separator+"14");
 	              playersinfos.add("Jenny"+separator+"63");
-	              
-	              
+
+
 	              i.putExtra("players", playersinfos);
-	              */
-	              startActivity(i);
-	          }
-	        });
+				 */
+				startActivity(i);
+			}
+		});
 
 	}
 
@@ -121,11 +117,11 @@ public class MainActivity extends Activity {
 	 */
 	public void readData() {
 		int i,j;
-		
+
 		challenges.clear();
 		players.clear();
 		groups.clear();
-		
+
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 		Set<String> voidset = new HashSet<String>();
@@ -231,7 +227,7 @@ public class MainActivity extends Activity {
 	public ArrayList<Challenge> getChallenges() {
 		return challenges;
 	}
-	
+
 	public Player getUser(){
 		Player ret = null;
 		for (Player player : players) {
