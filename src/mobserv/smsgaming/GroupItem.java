@@ -33,7 +33,7 @@ public class GroupItem extends Activity {
 
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		String label1 = "blublu";
+		String label1 = "Scores";
 		Tab tab = actionBar.newTab();
 		tab.setText(label1);
 		TabListener<ScoresTab> tl = new TabListener<ScoresTab>(this,
@@ -41,7 +41,7 @@ public class GroupItem extends Activity {
 		tab.setTabListener(tl);
 		actionBar.addTab(tab);
 
-		String label2 = "bloblo";
+		String label2 = "Challenges";
 		tab = actionBar.newTab();
 		tab.setText(label2);
 		TabListener<ChallengesTab> tl2 = new TabListener<ChallengesTab>(this,
