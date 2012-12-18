@@ -24,5 +24,11 @@ public class SMSParser {
 	 */
 	public void parse(String msg){
 		Log.i("SMSParser", msg);
+		try{
+			groups.get(0).getChallenges().get(0).setCompleted();
+		}
+		catch (java.lang.NullPointerException e){
+			Log.e("SMSParser", "I don't know where the 'groups' is !!!");
+		}
 	}
 }
