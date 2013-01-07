@@ -4,5 +4,13 @@
     <string name="app_name">SMS Gaming</string>
     <string name="hello_world">Hello beautiful world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="gotologin">Login</string>
+    <string name="joinGroup">join Group</string>
+    <string name="title_activity_join_group">Join a group</string>
+    <string name="enter_group_name">please enter the name of the group you want to join</string>
+    <string name="groupName">group name</string>
+    <string name="joinThatGroup">join Group</string>
+     
+    
 
 </resources>

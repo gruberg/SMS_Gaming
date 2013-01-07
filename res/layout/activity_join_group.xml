@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JoinGroupActivity" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" 
+        android:text="@string/enter_group_name"
+        android:lines="2" />
+    
+    
+    <LinearLayout 
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="fill_parent"
+  		android:layout_below="@id/textView1" >
+  		
+        <EditText 
+        	android:id="@+id/editText1"
+  			android:layout_width="wrap_content"
+  			android:layout_height="wrap_content"
+  			android:layout_weight="80"
+  			android:hint="@string/groupName" />
+  		
+        <Button
+        	android:id="@+id/button1"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/joinThatGroup"
+        	android:layout_weight="20"
+        	android:onClick="joinThatGroup" />
+  
+	</LinearLayout>
+
+</RelativeLayout>

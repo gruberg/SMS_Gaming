@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		lvListe = (ListView)findViewById(R.id.listView1);
-
+		
 		//tests de lolo
 		SMSParser parser = new SMSParser();
 		//fin des tests de lolo
@@ -110,7 +110,17 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-
+	/** Called when the user clicks the joinGroup button */
+	public void joinGroup(View view) {
+	    Intent intent = new Intent(this, JoinGroupActivity.class);
+	    startActivity(intent);
+	}
+	/** Called when the user clicks the Login button */
+	public void switchLogin(View view) {
+	    // Do something in response to button
+		Intent intent = new Intent(this, LoginActivity.class);
+		startActivity(intent);
+	}
 	/**
 	 * This method reads all the stored data of the game,
 	 * and puts it in variables.

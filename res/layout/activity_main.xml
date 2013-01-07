@@ -12,4 +12,23 @@
         android:layout_alignParentTop="true" >
     </ListView>
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gotologin"
+        android:layout_below="@id/listView1"
+        android:onClick="switchLogin" />
+    
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/joinGroup"
+        android:layout_below="@id/listView1"
+        android:layout_toRightOf="@id/button1"
+        android:onClick="joinGroup" />
+    
+   
+    
 </RelativeLayout>

@@ -5,9 +5,10 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="13"
         android:targetSdkVersion="16" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -23,12 +24,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <receiver android:name=".SMSReceiver">
+        <activity
+            android:name="mobserv.smsgaming.GroupItem"
+            android:label="Group Informations" >
+        </activity>
+
+        <receiver android:name="mobserv.smsgaming.SMSReceiver" >
             <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="mobserv.smsgaming.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="mobserv.smsgaming.JoinGroupActivity"
+            android:label="@string/title_activity_join_group"
+            android:parentActivityName="mobserv.smsgaming.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mobserv.smsgaming.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
