@@ -1,7 +1,17 @@
+# built application files
+*.apk
+*.ap_
+
+# Java class files
 *.class
-*~
-*.lock
-*.DS_Store
-*.swp
-*.out
-/bin
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.classpath
+.project
