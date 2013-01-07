@@ -34,9 +34,9 @@ public class MainActivity extends Activity {
 
 		lvListe = (ListView)findViewById(R.id.listView1);
 		
-		//tests de lolo
-		SMSParser parser = new SMSParser();
-		//fin des tests de lolo
+		//Instantiation du parser @lolo
+		@SuppressWarnings("unused")
+		SMSParser parser = new SMSParser(groups);
 
 		//tests de césar
 		Set<String> voidset = new HashSet<String>();
