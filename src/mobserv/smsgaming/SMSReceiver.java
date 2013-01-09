@@ -21,10 +21,10 @@ public class SMSReceiver extends BroadcastReceiver {
         //---get the SMS message passed in---
         Bundle bundle = intent.getExtras();        
         SmsMessage[] msgs = null;
-        String str = "Message was empty :(";            
+        String str = "!!!Message was empty!!!";            
         if (bundle != null)
         {
-            //---retrieve the SMS message received---
+            //retrieve the SMS message received
             Object[] pdus = (Object[]) bundle.get("pdus");
             msgs = new SmsMessage[pdus.length];
             str = "";
@@ -36,7 +36,7 @@ public class SMSReceiver extends BroadcastReceiver {
                 str += "\n";        
             }
         }	
-        //---display the new SMS message---
+        //display the message
         Log.i("SMSReceiver", str);
         try{
         	parser.parse(str);

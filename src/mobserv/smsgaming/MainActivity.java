@@ -34,11 +34,14 @@ public class MainActivity extends Activity {
 
 		lvListe = (ListView)findViewById(R.id.listView1);
 		
-		//Instantiation du parser @lolo
-		@SuppressWarnings("unused")
+		//Instantiation du parser lolo
 		SMSParser parser = new SMSParser(groups);
-
-		//tests de cŽsar
+		System.out.println(parser.searchSMS(
+				new Challenge(this, "hello world", 0, "", false),
+				this)
+		);
+		
+		//tests de cï¿½sar
 		Set<String> voidset = new HashSet<String>();
 		voidset.add("null");
 
@@ -73,7 +76,7 @@ public class MainActivity extends Activity {
 		this.printData();
 		//getUser().challengeCompleted(getGroup("group1"),challenges.get(0));
 
-		//fin tests cŽsar
+		//fin tests cï¿½sar
 
 		GroupAdapter adapter = new GroupAdapter(this, groups);
 
@@ -159,7 +162,7 @@ public class MainActivity extends Activity {
 							boolean p_isuser_prov = Boolean.parseBoolean(p_prov[2]);
 							int p_score_prov = Integer.parseInt(p_prov[3]);
 
-							//Toast.makeText(getBaseContext(),"new player :"+p_name_prov+" with n¡:"+p_number_prov,Toast.LENGTH_SHORT).show();
+							//Toast.makeText(getBaseContext(),"new player :"+p_name_prov+" with nï¿½:"+p_number_prov,Toast.LENGTH_SHORT).show();
 
 							if (getPlayer(p_name_prov,p_number_prov)==null) {
 								Player player_prov = new Player(this,p_name_prov,p_number_prov,p_isuser_prov);
