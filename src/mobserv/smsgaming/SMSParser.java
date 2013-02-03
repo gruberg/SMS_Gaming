@@ -2,6 +2,7 @@ package mobserv.smsgaming;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.database.Cursor;
 import android.net.Uri;
@@ -32,26 +33,46 @@ public class SMSParser {
 	 * 
 	 * @param chall	challenge we're looking for
 	 * @param act	activity the method was called from
+	 * @param lastT	timestamp of the last search through the messages, 0 if first time
 	 * @return		first matching SMS
 	 */
-	public String searchSMS(Challenge chall, Activity act){
+	public String searchSMS(Challenge chall, Activity act, long lastSearch){
 		String[] projection = {"person","date","body"};
 		Cursor cursor = act.getContentResolver().query(Uri.parse("content://sms/inbox"), projection, null, null, null);
+
+		
 		cursor.moveToFirst();
 
 		do{
 		   String msgData = "";
+		   long timestamp = -1;
 		   for(int idx=0;idx<cursor.getColumnCount();idx++)
 		   {
 		       msgData += " " + cursor.getColumnName(idx) + ":" + cursor.getString(idx);
+		       if (1 == idx){
+		    	   timestamp = Long.parseLong(cursor.getString(idx));
+		       }
 		   }
-		   Log.v("SMSParser", msgData);
-		   if (msgData.contains(chall.objective))
-			   return msgData;
+		   if (lastSearch < timestamp){
+			   Log.v("SMSParser", msgData);
+			   if (msgData.contains(chall.objective)){
+				   return msgData;
+			   }
+		   }
+		   
 		}while(cursor.moveToNext());
 		return "";
 	}
-	
+	/**
+	 * wrapper for searchSMS without timestamp
+	 * @param chall
+	 * @param act
+	 * @return
+	 */
+	@SuppressLint("UseValueOf")
+	public String searchSMS(Challenge chall, Activity act){
+		return searchSMS(chall, act, Long.parseLong("1355226757372"));
+	}
 	/**
 	 * Looks through the SMS inbox for messages containing <code>obj</code>.
 	 * 
