@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 	ArrayList<Group> groups = new ArrayList<Group>();
 	ArrayList<Player> players = new ArrayList<Player>();
 	ArrayList<Challenge> challenges = new ArrayList<Challenge>();
-
+	
 	String separator = "_;_";
 	@Override
 
@@ -144,7 +144,6 @@ public class MainActivity extends Activity {
 
 		Set<String> voidset = new HashSet<String>();
 		voidset.add("null");
-
 
 		Set<String> set_groups_prov = preferences.getStringSet("groups", voidset);
 		if (set_groups_prov!=voidset){

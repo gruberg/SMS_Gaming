@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 public class GroupItem extends Activity {
 	String separator = "_;_";
-
+	String groupname;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class GroupItem extends Activity {
 
 		Intent i = getIntent();
         // getting attached intent data
-        String groupname = i.getStringExtra("name");
+        groupname = i.getStringExtra("name");
         System.out.println("Showing group : "+groupname);
 		ActionBar actionBar = getActionBar();
 
@@ -55,6 +55,9 @@ public class GroupItem extends Activity {
 		
 	}
 	
+	public String getGroupName(){
+		return this.groupname;
+	}
 	class TabListener<T extends Fragment> implements ActionBar.TabListener {
 		private Fragment mFragment;
 		private final Activity mActivity;

@@ -34,8 +34,9 @@ public class ChallengesTab extends Fragment {
 
 		this.readData();
 
-    	// NEED TO "GET" THE GROUPNAME
-    	ChallengesAdapter adapter = new ChallengesAdapter(getActivity(),groups.get(0).getChallenges());
+		String groupname = ((GroupItem) getActivity()).getGroupName();
+
+		ChallengesAdapter adapter = new ChallengesAdapter(getActivity(),getGroup(groupname).getChallenges());
 
 		lvListe = (ListView) getActivity().findViewById(R.id.listViewChallenges);
 

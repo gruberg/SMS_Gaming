@@ -38,8 +38,9 @@ public class ScoresTab extends Fragment {
 
     	this.readData();
 
-    	// NEED TO "GET" THE GROUPNAME
-    	ScoresAdapter adapter = new ScoresAdapter(getActivity(),groups.get(0),groups.get(0).getPlayers());
+		String groupname = ((GroupItem) getActivity()).getGroupName();
+
+    	ScoresAdapter adapter = new ScoresAdapter(getActivity(),getGroup(groupname),getGroup(groupname).getPlayers());
 
 		lvListe = (ListView) getActivity().findViewById(R.id.listViewScores);
 
