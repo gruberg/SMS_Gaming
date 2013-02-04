@@ -5,6 +5,7 @@ import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class GroupItem extends Activity {
@@ -19,9 +20,7 @@ public class GroupItem extends Activity {
 
         TextView txtProduct = (TextView) findViewById(R.id.group_label);
 
-        Intent i = getIntent();
-        // getting attached intent data
-        String groupname = i.getStringExtra("name");
+        
 
         //ArrayList<String> players = i.getStringArrayListExtra("players");
         // displaying selected product name
@@ -29,6 +28,10 @@ public class GroupItem extends Activity {
 
 		 */
 
+		Intent i = getIntent();
+        // getting attached intent data
+        String groupname = i.getStringExtra("name");
+        System.out.println("Showing group : "+groupname);
 		ActionBar actionBar = getActionBar();
 
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

@@ -36,10 +36,10 @@ public class MainActivity extends Activity {
 		
 		//Instantiation du parser lolo
 		SMSParser parser = new SMSParser(groups);
-		System.out.println(parser.searchSMS(
-				new Challenge(this, "hello world", 0, "", false),
-				this)
-		);
+		//System.out.println(parser.searchSMS(
+		//		new Challenge(this, "hello world", 0, "", false),
+		//		this)
+		//);
 		
 		//tests de c�sar
 		Set<String> voidset = new HashSet<String>();
