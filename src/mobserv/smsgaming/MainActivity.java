@@ -1,6 +1,7 @@
 package mobserv.smsgaming;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,6 +49,10 @@ public class MainActivity extends Activity {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.clear();
+			
+		Date date = new Date();
+		editor.putString("date", date.toString());
+		
 		Set<String> test = new HashSet<String>();
 		test.add("group1");
 		test.add("group2");

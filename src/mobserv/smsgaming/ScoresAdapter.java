@@ -21,7 +21,6 @@ public class ScoresAdapter extends BaseAdapter {
 		inflater = LayoutInflater.from(context);
 		this.players = players;
 		this.group = group;
-		System.out.println("HERE MOTHERFUCKER");
 	}
 
 	public int getCount() {
