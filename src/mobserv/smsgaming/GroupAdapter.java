@@ -65,7 +65,6 @@ public class GroupAdapter extends BaseAdapter {
 		else if (int_position==3) str_position += "rd";
 		else str_position += "th";
 		holder.nbPoints.setText(str_position+"/"+Integer.toString(group.getPlayers().size())+" ("+Integer.toString(group.getUser().getScore(group.getName()))+"pts)");
-		System.out.println(group.getBet());
 		holder.bet.setText(group.getBet());
 		return convertView;
 

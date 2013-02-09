@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,9 +54,11 @@ public class ChallengesAdapter extends BaseAdapter {
 		holder = (ViewHolder) convertView.getTag();
 
 		}
-
-		holder.objective.setText(challenges.get(position).getObjective());
-		holder.points.setText(Integer.toString(challenges.get(position).getValue()));
+		Challenge challenge = challenges.get(position);
+		holder.objective.setText(challenge.getObjective());
+		if (challenge.isCompleted()) holder.objective.setTextColor(Color.RED);
+		else holder.objective.setTextColor(Color.BLACK);
+		holder.points.setText(Integer.toString(challenge.getValue()));
 		return convertView;
 
 	}

@@ -1,6 +1,8 @@
 package mobserv.smsgaming;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Group instance allows to represent any group
@@ -97,6 +99,10 @@ public class Group {
 		return ret;
 	}
 	
+	public void orderPlayers() {
+		Collections.sort(players, new RankComparator());
+	}
+	
 	
 	public String toString(){
 		String ret = "-----------------\n";
@@ -112,6 +118,19 @@ public class Group {
 		}
 		ret += "-----------------\n";
 		return ret;
+	}
+	
+	class RankComparator implements Comparator<Player> {
+		public int compare(Player p1, Player p2){
+	                //tri desc
+			if (getPosition(p1) < getPosition(p2)) {
+				return -1;
+			} else if (getPosition(p1) > getPosition(p2)) {
+				return 1;        	
+			} else {
+				return 0;
+			}
+		}      
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class ScoresAdapter extends BaseAdapter {
 		inflater = LayoutInflater.from(context);
 		this.players = players;
 		this.group = group;
+		this.group.orderPlayers();
+
 	}
 
 	public int getCount() {
@@ -59,9 +62,12 @@ public class ScoresAdapter extends BaseAdapter {
 		holder = (ViewHolder) convertView.getTag();
 
 		}
-		holder.rank.setText(Integer.toString(group.getPosition(players.get(position))));
-		holder.namePlayer.setText(players.get(position).getName());
-		holder.scorePlayer.setText(Integer.toString(players.get(position).getScore(group.getName())));
+		Player player = players.get(position);
+		holder.rank.setText(Integer.toString(group.getPosition(player)));
+		holder.namePlayer.setText(player.getName());
+		if (player.isUser()) holder.namePlayer.setTextColor(Color.RED);
+		else holder.namePlayer.setTextColor(Color.BLACK);
+		holder.scorePlayer.setText(Integer.toString(player.getScore(group.getName())));
 		
 		return convertView;
 
