@@ -75,6 +75,14 @@ public class MainActivity extends Activity {
 		group2P.add("player4"+separator+"0632340000"+separator+"false"+separator+"9");
 		editor.putStringSet("group2"+separator+"P", group2P);
 
+		Set<String> group2C = new HashSet<String>();
+		group2C.add("dothis1"+separator+"40"+separator+false);
+		group2C.add("dothis3"+separator+"10"+separator+false);
+		editor.putStringSet("group2"+separator+"C", group2C);
+
+		editor.putString("group1"+separator+"B", "Last one pays pizza for everyone");
+		editor.putString("group2"+separator+"B", "Winner gets ticket to concert");
+
 		editor.commit();
 
 		this.readData();	
@@ -144,8 +152,9 @@ public class MainActivity extends Activity {
 
 		Set<String> voidset = new HashSet<String>();
 		voidset.add("null");
-
+		// gets all groups
 		Set<String> set_groups_prov = preferences.getStringSet("groups", voidset);
+		// if not void, then loop on the groups to get their data
 		if (set_groups_prov!=voidset){
 			for (i=0;i<set_groups_prov.size();i++) {
 				String g_name_prov = set_groups_prov.toArray()[i].toString();
@@ -156,7 +165,7 @@ public class MainActivity extends Activity {
 
 					Set<String> set_p_prov = preferences.getStringSet(g_name_prov+separator+"P", voidset);
 					Set<String> set_c_prov = preferences.getStringSet(g_name_prov+separator+"C", voidset);
-
+					String bet_prov = preferences.getString(g_name_prov+separator+"B","");
 					if (set_p_prov!=voidset) {
 						for (j=0;j<set_p_prov.size();j++) {
 
@@ -196,6 +205,10 @@ public class MainActivity extends Activity {
 							}
 						}
 					}	
+					
+					if (!bet_prov.equals("")) {
+						group_prov.setBet(bet_prov);
+					}
 					groups.add(group_prov);
 				}
 			}

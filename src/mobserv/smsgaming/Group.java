@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Group {
 	
 	String name;
+	String bet;
 	ArrayList<Player> players = new ArrayList<Player>();
 	ArrayList<Challenge> challenges = new ArrayList<Challenge>();
 	
@@ -21,14 +22,23 @@ public class Group {
 		this.name = name;
 	}
 	
-	Group(String name, ArrayList<Player> players, ArrayList<Challenge> challenge){
+	Group(String name, ArrayList<Player> players, ArrayList<Challenge> challenge, String bet){
 		this.name = name;
 		this.players = players;
 		this.challenges = challenge;
+		this.bet = bet;
 	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public String getBet() {
+		return bet;
+	}
+	
+	public void setBet(String _bet) {
+		this.bet = _bet;
 	}
 
 	public ArrayList<Player> getPlayers() {

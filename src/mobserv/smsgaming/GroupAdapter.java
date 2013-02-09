@@ -41,10 +41,10 @@ public class GroupAdapter extends BaseAdapter {
 		convertView = inflater.inflate(R.layout.listgroups, null);
 
 		holder.nameGroup = (TextView)convertView.findViewById(R.id.nameGroup);
-
-		holder.nbPlayers = (TextView)convertView.findViewById(R.id.nbPlayers);
 		
 		holder.nbPoints = (TextView)convertView.findViewById(R.id.nbPoints);
+		
+		holder.bet = (TextView)convertView.findViewById(R.id.bet);
 
 		convertView.setTag(holder);
 
@@ -57,9 +57,6 @@ public class GroupAdapter extends BaseAdapter {
 		group = groups.get(position);
 		
 		holder.nameGroup.setText(group.getName());
-
-		holder.nbPlayers.setText("("+Integer.toString(group.getPlayers().size())
-				+" players)");
 		
 		String str_position = Integer.toString(group.getPosition(group.getUser()));
 		int int_position = group.getPosition(group.getUser());
@@ -67,8 +64,9 @@ public class GroupAdapter extends BaseAdapter {
 		else if (int_position==2) str_position += "nd";
 		else if (int_position==3) str_position += "rd";
 		else str_position += "th";
-		holder.nbPoints.setText(str_position+" ("+Integer.toString(group.getUser().getScore(group.getName()))+"pts)");
-
+		holder.nbPoints.setText(str_position+"/"+Integer.toString(group.getPlayers().size())+" ("+Integer.toString(group.getUser().getScore(group.getName()))+"pts)");
+		System.out.println(group.getBet());
+		holder.bet.setText(group.getBet());
 		return convertView;
 
 	}
@@ -79,10 +77,10 @@ public class GroupAdapter extends BaseAdapter {
 		}
 
 		TextView nameGroup;
-
-		TextView nbPlayers;
 		
 		TextView nbPoints;
+		
+		TextView bet;
 
 		}
 }
