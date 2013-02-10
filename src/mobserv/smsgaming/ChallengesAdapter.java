@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ChallengesAdapter extends BaseAdapter {
@@ -46,6 +47,7 @@ public class ChallengesAdapter extends BaseAdapter {
 
 		holder.objective = (TextView)convertView.findViewById(R.id.objective);
 		holder.points = (TextView)convertView.findViewById(R.id.points);
+		holder.checkBox = (ImageView) convertView.findViewById(R.id.checkBox);
 
 		convertView.setTag(holder);
 
@@ -56,7 +58,7 @@ public class ChallengesAdapter extends BaseAdapter {
 		}
 		Challenge challenge = challenges.get(position);
 		holder.objective.setText(challenge.getObjective());
-		if (challenge.isCompleted()) holder.objective.setTextColor(Color.RED);
+		if (challenge.isCompleted()) holder.checkBox.setImageResource(R.drawable.checkbox);	
 		else holder.objective.setTextColor(Color.BLACK);
 		holder.points.setText(Integer.toString(challenge.getValue()));
 		return convertView;
@@ -69,6 +71,7 @@ public class ChallengesAdapter extends BaseAdapter {
 
 		TextView objective;
 		TextView points;
+		ImageView checkBox;
 
 		}
 

@@ -131,12 +131,7 @@ public class MainActivity extends Activity {
 	    Intent intent = new Intent(this, JoinGroupActivity.class);
 	    startActivity(intent);
 	}
-	/** Called when the user clicks the Login button */
-	public void switchLogin(View view) {
-	    // Do something in response to button
-		Intent intent = new Intent(this, LoginActivity.class);
-		startActivity(intent);
-	}
+
 	/**
 	 * This method reads all the stored data of the game,
 	 * and puts it in variables.

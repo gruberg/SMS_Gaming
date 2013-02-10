@@ -14,9 +14,10 @@
     
     
     <LinearLayout 
+        android:id="@+id/linearLayout1"
   		android:orientation="horizontal"
   		android:layout_width="fill_parent"
-  		android:layout_height="fill_parent"
+  		android:layout_height="wrap_content"
   		android:layout_below="@id/textView1" >
   		
         <EditText 
@@ -33,6 +34,30 @@
         	android:text="@string/joinThatGroup"
         	android:layout_weight="20"
         	android:onClick="joinThatGroup" />
+  
+	</LinearLayout>
+	
+    <LinearLayout         
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="fill_parent"
+  		android:layout_below="@id/linearLayout1" >
+  		
+        <Button
+        	android:id="@+id/button2"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/joinGroup1"
+        	android:layout_weight="20"
+        	android:onClick="joinThatGroup" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:onClick="joinThatGroup"
+            android:text="@string/joinGroup2" />
   
 	</LinearLayout>
 

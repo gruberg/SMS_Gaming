@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class GroupAdapter extends BaseAdapter {
-
+    private final int[] bgColors = new int[] { R.color.list_bg_1, R.color.list_bg_2 };
 	ArrayList<Group> groups;
 	LayoutInflater inflater;
 	
@@ -45,7 +45,11 @@ public class GroupAdapter extends BaseAdapter {
 		holder.nbPoints = (TextView)convertView.findViewById(R.id.nbPoints);
 		
 		holder.bet = (TextView)convertView.findViewById(R.id.bet);
-
+		
+		int colorPosition = position % bgColors.length;
+		
+		convertView.setBackgroundResource(bgColors[colorPosition]);
+		
 		convertView.setTag(holder);
 
 		} else {

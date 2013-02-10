@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="list_bg_1">#ffffff</color>
+    <color name="list_bg_2">#fef2e8</color>
     <string name="app_name">SMS Gaming</string>
     <string name="hello_world">Hello beautiful world!</string>
     <string name="menu_settings">Settings</string>
@@ -10,7 +11,12 @@
     <string name="enter_group_name">please enter the name of the group you want to join</string>
     <string name="groupName">group name</string>
     <string name="joinThatGroup">join Group</string>
-     
-    
+    <string name="joinGroup1">join group &quot;name1&quot;</string>
+    <string name="joinGroup2">join group &quot;name2&quot;</string>
+    <string name="noGroup">this group doesn\'t exist, do you wish to create it ?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="title_activity_create_group">CreateGroupActivity</string>
+    <string name="createGroupConsigns">please enter the name of the group you want to create</string>
 
 </resources>

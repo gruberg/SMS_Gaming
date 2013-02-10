@@ -2,13 +2,13 @@ package mobserv.smsgaming;
 
 import java.util.ArrayList;
 
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ScoresAdapter extends BaseAdapter {
@@ -54,7 +54,9 @@ public class ScoresAdapter extends BaseAdapter {
 		holder.scorePlayer = (TextView)convertView.findViewById(R.id.scorePlayer);
 
 		holder.rank = (TextView)convertView.findViewById(R.id.rank);
-
+		
+		holder.imgIcon = (ImageView) convertView.findViewById(R.id.imgIcon);
+		
 		convertView.setTag(holder);
 
 		} else {
@@ -63,11 +65,12 @@ public class ScoresAdapter extends BaseAdapter {
 
 		}
 		Player player = players.get(position);
-		holder.rank.setText(Integer.toString(group.getPosition(player)));
+		holder.rank.setText(group.getPositionStr(player));
 		holder.namePlayer.setText(player.getName());
+		if (group.getPosition(player) == 1) holder.imgIcon.setImageResource(R.drawable.medalblue);		
 		if (player.isUser()) holder.namePlayer.setTextColor(Color.RED);
 		else holder.namePlayer.setTextColor(Color.BLACK);
-		holder.scorePlayer.setText(Integer.toString(player.getScore(group.getName())));
+		holder.scorePlayer.setText(Integer.toString(player.getScore(group.getName())) + "points");
 		
 		return convertView;
 
@@ -83,6 +86,8 @@ public class ScoresAdapter extends BaseAdapter {
 		TextView namePlayer;
 
 		TextView scorePlayer;
+		
+		ImageView imgIcon;
 
 		}
 

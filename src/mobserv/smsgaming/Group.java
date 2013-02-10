@@ -88,17 +88,31 @@ public class Group {
 		return ret;
 	}
 	
-	public int getPosition(Player player){		
+	public String getPositionStr(Player player){		
 		int ret = 1;
-		
+		String pos = "";
 		for (Player p: players) {
 			if ((p!=player)&&(p.getScore(getName())>player.getScore(getName()))) {
 				ret += 1;
 			}
 		}
-		return ret;
+		
+		if (ret == 1) {pos = Integer.toString(ret) + "st";}
+		else if (ret == 2) {pos = Integer.toString(ret) + "nd";}
+		else {pos = Integer.toString(ret) + "rd";}
+		return pos;
 	}
 	
+	public int getPosition(Player player){		
+		int ret = 1;
+		for (Player p: players) {
+			if ((p!=player)&&(p.getScore(getName())>player.getScore(getName()))) {
+				ret += 1;
+			}
+			
+		}
+		return ret;
+	}
 	public void orderPlayers() {
 		Collections.sort(players, new RankComparator());
 	}
