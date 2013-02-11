@@ -85,10 +85,11 @@ public class MainActivity extends Activity {
 		//getUser().challengeCompleted(getGroup("group1"),challenges.get(0));
 		
 		//fin tests c�sar
-		//Instantiation du parser de sms
+
 		SMSParser parser = new SMSParser(getUser(), groups);	
-		parser.searchSMS(challenges.get(0), this);
-		
+		for (Challenge chall : challenges){//Look if any challenge was completed
+		    parser.searchSMS(chall, this);
+		}
 		
 		GroupAdapter adapter = new GroupAdapter(this, groups);
 

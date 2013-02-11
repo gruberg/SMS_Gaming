@@ -25,7 +25,9 @@ public class SMSParser {
 	SMSParser(Player user, ArrayList<Group> groups) {
 		this.groups = groups;
 		this.user = user;
-		Log.d("SMSParser", "instantiated");
+		if (null == user){
+		    Log.e("SMSParser", "No user provided !");
+		}
 		SMSReceiver.setParser(this);
 	}
 	
@@ -63,10 +65,11 @@ public class SMSParser {
 		cursor.moveToPosition(cursor.getCount() - lastSearch - 1);//Go to the last message checked, according to the Challenge object
 		do{
 		   String msgData = cursor.getString(2);
-		   Log.d("SMSParser", "Message n°"+cursor.getString(3)+" from : "+cursor.getString(0)+" : "+msgData);
+		   //Log.d("SMSParser", "Message n°"+cursor.getString(3)+" from : "+cursor.getString(0)+" : "+msgData);
 		   if (msgData.contains(chall.objective)){
-		       Log.d("SMSParser", "Challenge completed : "+msgData);
+		       Log.d("SMSParser", "    Challenge completed : "+msgData);
 		       user.challengeCompleted(group,chall);
+		       return "Success";
 		   }
 		}while(cursor.moveToPrevious());
 		chall.lastSearch = cursor.getCount();
