@@ -22,6 +22,7 @@ public class Challenge {
 	boolean completed;
 	String separator = "_;_";
 	Context context;
+	int lastSearch;
 	
 	Challenge(Context context) {
 		objective = "";
@@ -37,6 +38,7 @@ public class Challenge {
 		this.groupname = groupname;
 		this.completed = completed;
 		this.context = context;
+		this.lastSearch = 0;
 	}
 	public String getGroupname() {
 		return groupname;

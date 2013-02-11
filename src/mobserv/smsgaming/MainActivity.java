@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.clear();
-			
+		
 		Date date = new Date();
 		editor.putString("date", date.toString());
 		
@@ -83,18 +83,11 @@ public class MainActivity extends Activity {
 		this.readData();	
 		this.printData();
 		//getUser().challengeCompleted(getGroup("group1"),challenges.get(0));
-
+		
 		//fin tests c�sar
-
 		//Instantiation du parser de sms
-		SMSParser parser = new SMSParser(groups);
-		Log.d("MainActivity",
-			parser.searchSMS(
-				new Challenge(this, "hello world", 0, "", false),
-				this,
-				0
-			)
-		);
+		SMSParser parser = new SMSParser(getUser(), groups);	
+		parser.searchSMS(challenges.get(0), this);
 		
 		
 		GroupAdapter adapter = new GroupAdapter(this, groups);
