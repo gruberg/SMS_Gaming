@@ -24,6 +24,7 @@ public class SMSParser {
 	
 	SMSParser(ArrayList<Group> groups) {
 		this.groups = groups;
+		Log.d("SMSParser", "instantiated");
 		SMSReceiver.setParser(this);
 	}
 	
@@ -33,41 +34,35 @@ public class SMSParser {
 	 * 
 	 * @param chall	challenge we're looking for
 	 * @param act	activity the method was called from
-	 * @param lastT	timestamp of the last search through the messages, 0 if first time
-	 * @return		first matching SMS
+	 * @param lastT	timestamp of the last search, 0 if first
+	 * @return		first matching SMS, null if nothing found
 	 */
 	public String searchSMS(Challenge chall, Activity act, long lastSearch){
 		String[] projection = {"person","date","body"};
 		Cursor cursor = act.getContentResolver().query(Uri.parse("content://sms/inbox"), projection, null, null, null);
-
+		long timestamp;
 		
 		cursor.moveToFirst();
 
 		do{
-		   String msgData = "";
-		   long timestamp = -1;
-		   for(int idx=0;idx<cursor.getColumnCount();idx++)
-		   {
-		       msgData += " " + cursor.getColumnName(idx) + ":" + cursor.getString(idx);
-		       if (1 == idx){
-		    	   timestamp = Long.parseLong(cursor.getString(idx));
-		       }
-		   }
-		   if (lastSearch < timestamp){
-			   Log.v("SMSParser", msgData);
-			   if (msgData.contains(chall.objective)){
-				   return msgData;
-			   }
-		   }
-		   
-		}while(cursor.moveToNext());
-		return "";
+		   String msgData = cursor.getString(2);
+		   timestamp = cursor.getLong(1);
+		   //for(int idx=0;idx<cursor.getColumnCount();idx++) //generic case
+		   Log.d("SMSParser", msgData);
+		   if (msgData.contains(chall.objective) && (timestamp > lastSearch)){
+		       Log.d("SMSParser", "Challenge completed : "+msgData);
+		       return msgData;
+		   }		   
+		}while(cursor.moveToNext() && (timestamp > lastSearch));
+		return "No matching sms !!";
 	}
 	/**
 	 * wrapper for searchSMS without timestamp
+	 * 
 	 * @param chall
 	 * @param act
 	 * @return
+	 * @deprecated Add a timestamp as 3rd parameter
 	 */
 	@SuppressLint("UseValueOf")
 	public String searchSMS(Challenge chall, Activity act){

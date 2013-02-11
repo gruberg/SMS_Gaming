@@ -16,6 +16,7 @@ public class SMSReceiver extends BroadcastReceiver {
 	
 	private static SMSParser parser;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Context context, Intent intent) {
         //---get the SMS message passed in---

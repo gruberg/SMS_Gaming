@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,13 +36,7 @@ public class MainActivity extends Activity {
 
 		lvListe = (ListView)findViewById(R.id.listView1);
 		
-		//Instantiation du parser lolo
-		SMSParser parser = new SMSParser(groups);
-		//System.out.println(parser.searchSMS(
-		//		new Challenge(this, "hello world", 0, "", false),
-		//		this)
-		//);
-		
+
 		//tests de c�sar
 		Set<String> voidset = new HashSet<String>();
 		voidset.add("null");
@@ -91,6 +86,17 @@ public class MainActivity extends Activity {
 
 		//fin tests c�sar
 
+		//Instantiation du parser de sms
+		SMSParser parser = new SMSParser(groups);
+		Log.d("MainActivity",
+			parser.searchSMS(
+				new Challenge(this, "hello world", 0, "", false),
+				this,
+				0
+			)
+		);
+		
+		
 		GroupAdapter adapter = new GroupAdapter(this, groups);
 
 		lvListe.setAdapter(adapter);
@@ -263,15 +269,15 @@ public class MainActivity extends Activity {
 	public void printData() {
 		System.out.println("nb groups:"+groups.size());
 		for(Group group : groups) {
-			System.out.println(group);
+			Log.d("printData",group.toString());
 		}
 		System.out.println("nb players:"+players.size());
 		for (Player player : players) {
-			System.out.println(player);
+			Log.d("printData",player.toString());
 		}
 		System.out.println("nb challenges:"+challenges.size());
 		for (Challenge challenge: challenges) {
-			System.out.println(challenge);
+			Log.d("printData",challenge.toString());
 		}
 	}
 }
