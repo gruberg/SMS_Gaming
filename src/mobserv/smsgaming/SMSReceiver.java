@@ -1,5 +1,9 @@
 package mobserv.smsgaming;
 
+import java.util.ArrayList;
+import java.util.Set;
+
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +19,9 @@ import android.util.Log;
 public class SMSReceiver extends BroadcastReceiver {
 	
 	private static SMSParser parser;
+	private static ArrayList<Challenge> challenges;
+	private static Activity act;
+
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -40,7 +47,9 @@ public class SMSReceiver extends BroadcastReceiver {
         //display the message
         Log.i("SMSReceiver", str);
         try{
-        	parser.parse(str);
+    		for (Challenge chall : SMSReceiver.challenges){//Look if any challenge was completed
+    		    parser.searchSMS(chall, act);
+    		}
         }
         catch (java.lang.NullPointerException e){
         	Log.e("SMSReceiver", "I don't know where the parser is !");
@@ -52,8 +61,10 @@ public class SMSReceiver extends BroadcastReceiver {
 	 * should be sent to through parse(message).
 	 * @param _parser : instance of SMSParser
 	 */
-	protected static void setParser(SMSParser _parser){
+	protected static void setParserChall(SMSParser _parser, ArrayList<Challenge> chall, Activity act){
 		SMSReceiver.parser = _parser;
+		SMSReceiver.challenges = chall;
+		SMSReceiver.act = act;
 	}
 
 }

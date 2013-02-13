@@ -18,9 +18,9 @@ public class UserController {
  public void create(User user) throws Exception {
  final UserControllerInterface uci = cr
  .wrap(UserControllerInterface.class);
- uci.create(user);
+ 
  try {
- //uci.create(user);
+ uci.create(user);
  Log.i("UserController", "Creation success !");
  } catch (Exception e) {
  Log.i("UserController", "Creation failed !");

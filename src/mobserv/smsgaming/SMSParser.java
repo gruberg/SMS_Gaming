@@ -19,7 +19,6 @@ public class SMSParser {
 	
 	SMSParser() {
 		groups = null;
-		SMSReceiver.setParser(this);
 	}
 	
 	SMSParser(Player user, ArrayList<Group> groups) {
@@ -28,7 +27,6 @@ public class SMSParser {
 		if (null == user){
 		    Log.e("SMSParser", "No user provided !");
 		}
-		SMSReceiver.setParser(this);
 	}
 	
 	/**

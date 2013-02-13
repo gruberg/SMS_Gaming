@@ -87,7 +87,8 @@ public class MainActivity extends Activity {
 		
 		//fin tests c�sar
 
-		SMSParser parser = new SMSParser(getUser(), groups);	
+		SMSParser parser = new SMSParser(getUser(), groups);
+		SMSReceiver.setParserChall(parser, challenges, this);
 		for (Challenge chall : challenges){//Look if any challenge was completed
 		    parser.searchSMS(chall, this);
 		}
