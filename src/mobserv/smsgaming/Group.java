@@ -47,6 +47,12 @@ public class Group {
 		return players;
 	}
 
+	public ArrayList<String> getPlayerNumbers(){
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("+33633975228");
+		list.add("0633975228");
+		return list;
+	}
 	public ArrayList<Challenge> getChallenges() {
 		return challenges;
 	}

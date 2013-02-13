@@ -43,6 +43,7 @@ public class SMSParser {
 		}
 		String[] projection = {"address","date","body", "_id"};//The informations we are interested in the SMSs
 		Group group = null;
+		ArrayList<String> playerNumbers;
 		Cursor cursor = act.getContentResolver().query(Uri.parse("content://sms/inbox"), projection, null, null, null);
 		//int lastSearch = chall.lastSearch;
 		
@@ -58,6 +59,7 @@ public class SMSParser {
 		    Log.e("SMSParser", "Group "+chall.getGroupname()+" was not found.");
 //		    return "No group !";
 		}
+		playerNumbers = group.getPlayerNumbers();
 		
 		if (cursor.getCount() == 0){
 		    Log.e("SMSParser", "You don't have any SMS, loser !");
@@ -69,8 +71,10 @@ public class SMSParser {
 		cursor.moveToLast();
 		do{
 		   String msgData = cursor.getString(2);
-		   //Log.d("SMSParser", "Message n�"+cursor.getString(3)+" from : "+cursor.getString(0)+" : "+msgData);
-		   if (msgData.contains(chall.objective)){
+		   String sender = cursor.getString(0);
+		   //Log.d("SMSParser", "Message "+cursor.getString(3)+" from : "+cursor.getString(0)+" : "+msgData);
+		   //if (msgData.contains(chall.objective) ){
+		   if (msgData.contains(chall.objective) && playerNumbers.contains(sender) ){
 		       Log.d("SMSParser", "    Challenge completed : "+msgData);
 		       user.challengeCompleted(group,chall);
 		       return "Success";
