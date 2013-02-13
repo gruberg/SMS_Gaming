@@ -38,10 +38,13 @@ public class SMSParser {
 	 * @return		first matching SMS, null if nothing found
 	 */
 	public String searchSMS(Challenge chall, Activity act){
+		if (chall.isCompleted()){
+			return "challenge already completed";
+		}
 		String[] projection = {"address","date","body", "_id"};//The informations we are interested in the SMSs
 		Group group = null;
 		Cursor cursor = act.getContentResolver().query(Uri.parse("content://sms/inbox"), projection, null, null, null);
-		int lastSearch = chall.lastSearch;
+		//int lastSearch = chall.lastSearch;
 		
 		Log.d("SMSParser", "Searching for challenge "+chall.toString());
 
@@ -60,10 +63,13 @@ public class SMSParser {
 		    Log.e("SMSParser", "You don't have any SMS, loser !");
 		    return "No SMS !";
 		}
-		cursor.moveToPosition(cursor.getCount() - lastSearch - 1);//Go to the last message checked, according to the Challenge object
+		
+		
+		//cursor.moveToPosition(cursor.getCount() - lastSearch - 1);//Go to the last message checked, according to the Challenge object
+		cursor.moveToLast();
 		do{
 		   String msgData = cursor.getString(2);
-		   //Log.d("SMSParser", "Message n°"+cursor.getString(3)+" from : "+cursor.getString(0)+" : "+msgData);
+		   //Log.d("SMSParser", "Message nï¿½"+cursor.getString(3)+" from : "+cursor.getString(0)+" : "+msgData);
 		   if (msgData.contains(chall.objective)){
 		       Log.d("SMSParser", "    Challenge completed : "+msgData);
 		       user.challengeCompleted(group,chall);

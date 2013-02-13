@@ -1,7 +1,6 @@
 package mobserv.smsgaming;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -23,7 +22,6 @@ public class SMSReceiver extends BroadcastReceiver {
 	private static Activity act;
 
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Context context, Intent intent) {
         //---get the SMS message passed in---
