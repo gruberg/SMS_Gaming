@@ -2,6 +2,7 @@ package mobserv.smsgaming;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.widget.TextView;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
+@SuppressLint("ResourceAsColor")
 public class LoginActivity extends Activity {
 	/**
 	 * A dummy authentication store containing known user names and passwords.
@@ -131,11 +133,7 @@ public class LoginActivity extends Activity {
 			mEmailView.setError(getString(R.string.error_field_required));
 			focusView = mEmailView;
 			cancel = true;
-		} else if (!mEmail.contains("@")) {
-			mEmailView.setError(getString(R.string.error_invalid_email));
-			focusView = mEmailView;
-			cancel = true;
-		}
+		} 
 
 		if (cancel) {
 			// There was an error; don't attempt login and focus the first

@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JoinGroupActivity" >
+    tools:context=".JoinGroupActivity"
+    android:background="@drawable/gradient_bw" >
 
     <TextView
         android:id="@+id/textView1"
@@ -49,14 +50,14 @@
         	android:layout_height="wrap_content"
         	android:text="@string/joinGroup1"
         	android:layout_weight="20"
-        	android:onClick="joinThatGroup" />
+        	android:onClick="joinThatGroup1" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
-            android:onClick="joinThatGroup"
+            android:onClick="joinThatGroup2"
             android:text="@string/joinGroup2" />
   
 	</LinearLayout>

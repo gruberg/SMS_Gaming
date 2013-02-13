@@ -16,7 +16,7 @@ public class ScoresAdapter extends BaseAdapter {
 	ArrayList<Player> players;
 	Group group;
 	LayoutInflater inflater;
-	
+	private final int[] bgColors = new int[] { R.color.list_bg_1, R.color.list_bg_2 };	
 
 	ScoresAdapter(Context context, Group group, ArrayList<Player> players){
 		inflater = LayoutInflater.from(context);
@@ -56,7 +56,9 @@ public class ScoresAdapter extends BaseAdapter {
 		holder.rank = (TextView)convertView.findViewById(R.id.rank);
 		
 		holder.imgIcon = (ImageView) convertView.findViewById(R.id.imgIcon);
+		int colorPosition = position % bgColors.length;
 		
+		convertView.setBackgroundResource(bgColors[colorPosition]);
 		convertView.setTag(holder);
 
 		} else {
@@ -70,7 +72,7 @@ public class ScoresAdapter extends BaseAdapter {
 		if (group.getPosition(player) == 1) holder.imgIcon.setImageResource(R.drawable.medalblue);		
 		if (player.isUser()) holder.namePlayer.setTextColor(Color.RED);
 		else holder.namePlayer.setTextColor(Color.BLACK);
-		holder.scorePlayer.setText(Integer.toString(player.getScore(group.getName())) + "points");
+		holder.scorePlayer.setText(Integer.toString(player.getScore(group.getName())) + " points");
 		
 		return convertView;
 
