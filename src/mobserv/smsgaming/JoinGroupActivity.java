@@ -7,6 +7,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -88,6 +89,24 @@ public class JoinGroupActivity extends Activity {
 					Group newgroup = new Group();
 					newgroup.name = mEdit.getText().toString();
 					Context context = getApplicationContext();
+					
+					
+					String mEmail;
+				    SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+					mEmail= sharedPreferences.getString("USER", "");
+					User u = new User();
+					u.setGroup(newgroup.name);
+					u.setMail(mEmail);
+					
+					final UserController uc = new UserController();
+					//Log.v("JoinGroupActivity", "UC instanciated");
+					try {
+					    uc.create(u);
+					} catch (Exception e) {
+					    return;
+					}
+					
+					
 					CharSequence text = "Group "+ newgroup.name + " created";
 					int duration = Toast.LENGTH_SHORT;
 					Toast toast = Toast.makeText(context, text, duration);
@@ -110,3 +129,4 @@ public class JoinGroupActivity extends Activity {
 	}
 
 }
+

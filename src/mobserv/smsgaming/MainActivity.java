@@ -18,6 +18,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		lvListe = (ListView)findViewById(R.id.listView1);
 		
 
@@ -90,6 +91,7 @@ public class MainActivity extends Activity {
 		for (Challenge chall : challenges){//Look if any challenge was completed
 		    parser.searchSMS(chall, this);
 		}
+
 		
 		GroupAdapter adapter = new GroupAdapter(this, groups);
 

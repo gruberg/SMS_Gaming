@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,6 +61,8 @@ public class LoginActivity extends Activity {
 		// Set up the login form.
 		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) findViewById(R.id.email);
+	    SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+		mEmail= sharedPreferences.getString("USER", "");
 		mEmailView.setText(mEmail);
 
 		mPasswordView = (EditText) findViewById(R.id.password);
@@ -75,7 +78,10 @@ public class LoginActivity extends Activity {
 						return false;
 					}
 				});
-
+		mPassword= sharedPreferences.getString("PWD", "");
+		mPasswordView.setText(mPassword);
+		
+		
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
 		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
@@ -147,6 +153,13 @@ public class LoginActivity extends Activity {
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
 			Intent intent = new Intent(this, MainActivity.class);
+			
+		    SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+		    SharedPreferences.Editor editor = sharedPreferences.edit();
+		    editor.putString("USER", mEmail);
+		    editor.putString("PWD", mPassword);
+		    editor.commit();			
+			
 			startActivity(intent);
 		}
 	}
@@ -241,3 +254,4 @@ public class LoginActivity extends Activity {
 		}
 	}
 }
+
