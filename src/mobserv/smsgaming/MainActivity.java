@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 	ArrayList<Group> groups = new ArrayList<Group>();
 	ArrayList<Player> players = new ArrayList<Player>();
 	ArrayList<Challenge> challenges = new ArrayList<Challenge>();
-	Boolean force_clean = false;
+	Boolean force_clean = true;
 	
 	String separator = "_;_";
 	@Override
@@ -90,8 +90,8 @@ public class MainActivity extends Activity {
 			editor.putStringSet("group2"+separator+"C", group2C);
 			
 			Set<String> group3P = new HashSet<String>();
-			group3P.add("John"+separator+"0672838272"+separator+"true"+separator+"12");
-			group3P.add("Alice"+separator+"0632340000"+separator+"false"+separator+"9");
+			group3P.add("John"+separator+"0672838272"+separator+"true"+separator+"8");
+			group3P.add("Alice"+separator+"0632340000"+separator+"false"+separator+"10");
 			editor.putStringSet("group3"+separator+"P", group3P);
 
 			Set<String> group3C = new HashSet<String>();

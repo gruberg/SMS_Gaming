@@ -7,17 +7,17 @@
     <string name="hello_world">Hello beautiful world!</string>
     <string name="menu_settings">Settings</string>
     <string name="gotologin">Login</string>
-    <string name="joinGroup">join Group</string>
+    <string name="joinGroup">Join group</string>
     <string name="title_activity_join_group">Join a group</string>
-    <string name="enter_group_name">please enter the name of the group you want to join</string>
+    <string name="enter_group_name">Please enter the name of the group you want to join</string>
     <string name="groupName">group name</string>
-    <string name="joinThatGroup">join Group</string>
-    <string name="joinGroup1">join our weekly challenge</string>
-    <string name="joinGroup2">join eurecom group</string>
-    <string name="noGroup">this group doesn\'t exist, do you wish to create it ?</string>
+    <string name="joinThatGroup">Join group</string>
+    <string name="joinGroup1">Join weekly challenge</string>
+    <string name="joinGroup2">Join Eurecom group</string>
+    <string name="noGroup">This group doesn\'t exist, do you want to create it ?</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
     <string name="title_activity_create_group">CreateGroupActivity</string>
-    <string name="createGroupConsigns">please enter the name of the group you want to create</string>
+    <string name="createGroupConsigns">Please enter the name of the group you want to create</string>
 
 </resources>
