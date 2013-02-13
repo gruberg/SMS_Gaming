@@ -26,7 +26,7 @@
         </activity>
         <activity
             android:name="mobserv.smsgaming.GroupItem"
-            android:label="Group Informations" >
+            android:label="Group Information" >
         </activity>
 
         <receiver android:name="mobserv.smsgaming.SMSReceiver" >
