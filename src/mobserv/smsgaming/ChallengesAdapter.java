@@ -60,6 +60,7 @@ public class ChallengesAdapter extends BaseAdapter {
 		Challenge challenge = challenges.get(position);
 		holder.objective.setText(challenge.getObjective());
 		if (challenge.isCompleted()) holder.checkBox.setImageResource(R.drawable.checkbox);	
+		else holder.checkBox.setImageResource(0);
 		holder.points.setText(Integer.toString(challenge.getValue()) + " points");
 		return convertView;
 

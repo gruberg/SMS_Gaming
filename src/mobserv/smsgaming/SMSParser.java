@@ -73,8 +73,8 @@ public class SMSParser {
 		   String msgData = cursor.getString(2);
 		   String sender = cursor.getString(0);
 		   //Log.d("SMSParser", "Message "+cursor.getString(3)+" from : "+cursor.getString(0)+" : "+msgData);
-		   //if (msgData.contains(chall.objective) ){
-		   if (msgData.contains(chall.objective) && playerNumbers.contains(sender) ){
+		   if (msgData.contains(chall.objective) ){
+		   //if (msgData.contains(chall.objective) && playerNumbers.contains(sender) ){
 		       Log.d("SMSParser", "    Challenge completed : "+msgData);
 		       user.challengeCompleted(group,chall);
 		       return "Success";
