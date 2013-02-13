@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 	ArrayList<Group> groups = new ArrayList<Group>();
 	ArrayList<Player> players = new ArrayList<Player>();
 	ArrayList<Challenge> challenges = new ArrayList<Challenge>();
-	Boolean force_clean = true;
+	Boolean force_clean = false;
 	
 	String separator = "_;_";
 	@Override
