@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" 
         android:text="@string/enter_group_name"
+        android:textSize="24sp"
         android:lines="2" />
     
     
@@ -26,6 +27,7 @@
   			android:layout_width="wrap_content"
   			android:layout_height="wrap_content"
   			android:layout_weight="80"
+  			android:textSize="24sp"
   			android:hint="@string/groupName" />
   		
         <Button
@@ -34,6 +36,7 @@
         	android:layout_height="wrap_content"
         	android:text="@string/joinThatGroup"
         	android:layout_weight="20"
+        	android:textSize="24sp"
         	android:onClick="joinThatGroup" />
   
 	</LinearLayout>
@@ -50,6 +53,7 @@
         	android:layout_height="wrap_content"
         	android:text="@string/joinGroup1"
         	android:layout_weight="20"
+        	android:textSize="24sp"
         	android:onClick="joinThatGroup1" />
 
         <Button
@@ -58,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:onClick="joinThatGroup2"
+            android:textSize="24sp"
             android:text="@string/joinGroup2" />
   
 	</LinearLayout>
